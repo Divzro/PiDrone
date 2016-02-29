@@ -5,11 +5,11 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-DRIVE_1 = 27
+DRIVE_1 = 23
 #REV
-DRIVE_2 = 18
+DRIVE_2 = 22
 DRIVE_3 = 17
-DRIVE_4 = 22
+DRIVE_4 = 18
 
 GPIO.setup(DRIVE_1, GPIO.OUT)
 GPIO.setup(DRIVE_2, GPIO.OUT)
@@ -41,9 +41,7 @@ class _Getch:
 
 def get():
     inkey = _Getch()
-    while(1):
-            k=inkey()
-            if k!='':break
+    k=inkey()
 #FORWARD - W KEY
     if ord(k) == 119:
                 GPIO.output(DRIVE_1, GPIO.HIGH)
@@ -65,15 +63,15 @@ def get():
 #SPIN LEFT - E KEY
     if ord(k) == 101:
                 GPIO.output(DRIVE_1, GPIO.HIGH)
-                GPIO.output(DRIVE_2, GPIO.HIGH)
+                GPIO.output(DRIVE_2, GPIO.LOW)
                 GPIO.output(DRIVE_3, GPIO.LOW)
-                GPIO.output(DRIVE_4, GPIO.LOW)
+                GPIO.output(DRIVE_4, GPIO.HIGH)
 #SPIN LEFT - Q KEY
     if ord(k) == 113:
                 GPIO.output(DRIVE_1, GPIO.LOW)
-                GPIO.output(DRIVE_2, GPIO.LOW)
+                GPIO.output(DRIVE_2, GPIO.HIGH)
                 GPIO.output(DRIVE_3, GPIO.HIGH)
-                GPIO.output(DRIVE_4, GPIO.HIGH)
+                GPIO.output(DRIVE_4, GPIO.LOW)
 #TURN RIGHT - D KEY
     if ord(k) == 100:
                 GPIO.output(DRIVE_1, GPIO.HIGH)
@@ -109,7 +107,7 @@ def get():
     if ord(k) == 27:
                 exit()
     else:
-                time.sleep(.7)
+                time.sleep(.1)
                 GPIO.output(DRIVE_1, GPIO.LOW)
                 GPIO.output(DRIVE_2, GPIO.LOW)
                 GPIO.output(DRIVE_3, GPIO.LOW)
