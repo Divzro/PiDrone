@@ -56,7 +56,7 @@ def drive(power):
     print power
 #FORWARD - W KEY
     if ord(k) == 119:
-        if power > 99:
+        if power > 95:
             print "Full Speed"
             pass
         if power < 0:
@@ -74,7 +74,7 @@ def drive(power):
             rvright.start(0)
 #REVERSE - S KEY
     if ord(k) == 115:
-        if power < -99:
+        if power < -95:
             pass
             print "Full Reverse"
         if power < -1:
